@@ -47,9 +47,10 @@
         if (APP.androidAppLink) go(APP.androidAppLink);
         else if (APP.androidIntent) go(APP.androidIntent);
         else go(APP.iosScheme);
+        /*
         setTimeout(() => {
           if (!fallbackTriggered && Date.now() - start >= APP.timeout) go(APP.androidStoreUrl);
-        }, APP.timeout);
+        }, APP.timeout);*/
       } else {
         go(APP.iosStoreUrl);
       }
