@@ -11,27 +11,8 @@
   </style>
 </head>
 <body>
-    <h2>Intent URL로 앱 실행 (미설치 시 fallback)</h2>
-
-    <a class="cta" href="intent://open#Intent;
-        scheme=myapp;
-        package=com.example.qrbarcodeapp;
-        end">
-        앱 실행 (Intent 방식)
-    </a>
-
-    <br><br>
-
-    <button class="cta" onclick="location.href='intent://open#Intent;scheme=myapp;package=com.example.myapp;S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.example.myapp;end'">
-        앱 실행 (Intent + fallback)
-    </button>
+    <h2>Intent URL로 앱 실행</h2>
 
     <a class="cta" href="myapp://open">앱 실행하기 (myapp://open)</a>
-
-    <br><br>
-
-    <button class="cta" onclick="location.href='myapp://open'">
-        앱 실행 버튼
-    </button>
 </body>
 </html>
