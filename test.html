@@ -12,56 +12,21 @@
 </head>
 <body>
   <a href="#" class="cta" id="open-app">앱에서 열기</a>
-  <p class="note">앱이 설치되어 있지 않다면 스토어로 이동합니다.</p>
-  <a class="cta" href="intent://instagram.com/#Intent;package=com.instagram.android;scheme=https;end" target="blank"> 인스타그램 연결 </a>
-  <a class="cta" href="intent://open#Intent;package=com.example.qrbarcodeapp;scheme=myapp;end" target="blank"> 인스타그램 연결 </a>
-
-  <script>
-    const APP = {
-      iosUniversalLink: 'https://example.com/open',
-      iosScheme: 'myapp://open?foo=bar',
-      //androidAppLink: 'https://example.com/open',
-      androidIntent: 'intent://open#Intent;scheme=myapp;package=com.example.qrbarcodeapp;end', //intent://open#Intent;scheme=myapp;package=com.example.myapp;S.foo=bar;end
-      iosStoreUrl: 'https://apps.apple.com/kr/app/id123456789',
-      androidStoreUrl: 'https://play.google.com/store/apps/details?id=com.example.myapp',
-      timeout: 1200
-    };
-
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
-
-    function openApp() {
-      let fallbackTriggered = false;
-      const start = Date.now();
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'hidden') fallbackTriggered = true;
-      }, { once: true });
-
-      function go(url){ window.location.href = url; }
-
-      if (isIOS) {
-        go(APP.iosUniversalLink || APP.iosScheme);
-        setTimeout(() => {
-          if (!fallbackTriggered && Date.now() - start >= APP.timeout) go(APP.iosStoreUrl);
-        }, APP.timeout);
-      } else if (isAndroid) {
-        if (APP.androidAppLink) go(APP.androidAppLink);
-        else if (APP.androidIntent) go(APP.androidIntent);
-        else go(APP.iosScheme);
-        /*
-        setTimeout(() => {
-          if (!fallbackTriggered && Date.now() - start >= APP.timeout) go(APP.androidStoreUrl);
-        }, APP.timeout);*/
-      } else {
-        go(APP.iosStoreUrl);
-      }
-    }
-
-    document.getElementById('open-app').addEventListener('click', (e) => {
-      e.preventDefault();
-      openApp();
-    });
   </script>
+    <h2>Intent URL로 앱 실행 (미설치 시 fallback)</h2>
+
+    <a class="cta" href="intent://open#Intent;
+        scheme=myapp;
+        package=com.example.myapp;
+        S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.example.myapp;
+        end">
+        앱 실행 (Intent 방식)
+    </a>
+
+    <br><br>
+
+    <button class="cta" onclick="location.href='intent://open#Intent;scheme=myapp;package=com.example.myapp;S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.example.myapp;end'">
+        앱 실행 (Intent + fallback)
+    </button>
 </body>
 </html>
